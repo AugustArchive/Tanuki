@@ -19,3 +19,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+import Logger from '@ayanaware/logger';
+
+/**
+ * Represents the current Tanuki instance running. You can grab
+ * the current instance by using the static getter {@link Tanuki.instance},
+ * which will return this Tanuki instance.
+ */
+export class Tanuki {
+  private static _instance: Tanuki;
+  private logger: Logger = Logger.get(Tanuki);
+
+  constructor() {
+    if (!Tanuki._instance) Tanuki._instance = this;
+  }
+
+  /**
+   * Returns the current {@link Tanuki} instance.
+   */
+  static get instance() {
+    return this._instance;
+  }
+
+  build() {
+    return null;
+  }
+
+  buildCi() {
+    return null;
+  }
+
+  docs() {
+    return null;
+  }
+
+  generateLicenses() {
+    return null;
+  }
+
+  lint() {
+    return null;
+  }
+
+  init() {
+    return null;
+  }
+}

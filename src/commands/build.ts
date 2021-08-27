@@ -19,3 +19,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+import * as yargs from 'yargs';
+import Logger from '@ayanaware/logger';
+
+const logger = Logger.get('build');
+
+export default class BuildCommand implements yargs.CommandModule {
+  command = 'build';
+  describe = 'Builds the project artifacts.';
+
+  async handler(args: yargs.Arguments) {
+    logger.info('Building project artifacts...');
+  }
+
+  builder(args: yargs.Argv) {
+    return args
+      .option('cjs', {
+        alias: 'commonjs',
+        describe: 'If the artifact should be in CommonJS only.',
+        default: false,
+      })
+      .option('esm', {
+        alias: 'esmodules',
+        describe:
+          'If the artifact should be in ES Modules only. If both --esm and --cjs are combined, both artifacts will be built.',
+        default: false,
+      })
+      .option('m', {
+        alias: 'minify',
+        describe: 'If the built artifacts should be minified.',
+        default: false,
+      })
+      .option('d', {
+        alias: 'docs',
+        describe: 'If the build tool should emit Typedoc information, this is only in library mode.',
+        default: false,
+      })
+      .option('mo', {
+        alias: 'mode',
+        describe:
+          'Chooses which mode the build tool will use. Only values should be `app` or `library`, this will also check `package.json` under the `tanuki` object.',
+        default: 'app',
+      });
+  }
+}

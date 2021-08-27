@@ -19,3 +19,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+const { version: pkgVersion } = require('../package.json');
+
+/**
+ * Returns the current version of `@augu/tanuki`.
+ */
+export const version: string = pkgVersion;
+export { Tanuki } from './Tanuki';

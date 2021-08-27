@@ -14,22 +14,27 @@
     "template",
     "index.d.ts"
   ],
+  "bin": {
+    "tanuki": "./bin/tanuki"
+  },
   "scripts": {
     "build:ci": "eslint src --ext .ts && tsc --noEmit",
     "docgen": "node bin/tanuki.js docs --project .",
-    "format": "prettier --config ./.prettierrc.json --write src/**/*.ts bin/*.js",
+    "format": "prettier --config ./.prettierrc.json --write src/**/*.ts",
     "build": "yarn lint && yarn format && rimraf build && tsc",
     "lint": "eslint src --ext .ts --fix"
   },
   "dependencies": {
     "@augu/utils": "1.5.3",
     "@aws-sdk/client-s3": "3.27.0",
+    "@ayanaware/logger": "2.2.1",
     "esbuild": "0.12.24",
     "inquirer": "8.1.2",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "sao": "1.7.1",
-    "typedoc": "0.21.7"
+    "typedoc": "0.21.7",
+    "yargs": "17.1.1"
   },
   "devDependencies": {
     "@augu/eslint-config": "2.2.0",
@@ -37,6 +42,7 @@
     "@types/inquirer": "7.3.3",
     "@types/node": "16.7.1",
     "@types/rimraf": "3.0.2",
+    "@types/yargs": "17.0.2",
     "@typescript-eslint/eslint-plugin": "4.29.3",
     "@typescript-eslint/parser": "4.29.3",
     "eslint": "7.32.0",

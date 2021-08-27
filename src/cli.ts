@@ -19,3 +19,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+import yargs from 'yargs';
+import { Tanuki } from '.';
+import BuildCommand from './commands/build';
+import BuildCiCommand from './commands/build-ci';
+import DocsCommand from './commands/docs';
+
+// initialize a new tanuki instance
+new Tanuki();
+yargs
+  .usage('Usage: $0 <command> [options]')
+  .command(new BuildCiCommand())
+  .command(new BuildCommand())
+  .command(new DocsCommand())
+  .recommendCommands()
+  .demandCommand(1)
+  .strict()
+  .alias('v', 'version')
+  .help('h')
+  .alias('h', 'help').argv;
