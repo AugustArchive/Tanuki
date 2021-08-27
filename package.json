@@ -29,7 +29,7 @@
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "sao": "1.7.1",
-    "typedoc": "0.21.6"
+    "typedoc": "0.21.7"
   },
   "devDependencies": {
     "@augu/eslint-config": "2.2.0",
