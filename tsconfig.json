@@ -4,7 +4,7 @@
     "moduleResolution": "node",
     "typeRoots": ["./src/@types", "./node_modules/@types"],
     "rootDir": "./src",
-    "types": ["node", "reflect-metadata"],
+    "types": ["node"],
     "outDir": "./build",
     "skipLibCheck": true
   },

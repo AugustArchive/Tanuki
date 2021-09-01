@@ -24,75 +24,31 @@ import * as yargs from 'yargs';
 import esbuild from 'esbuild';
 import shell from '../internal/Shell';
 import { Tanuki } from '..';
+import { BuildMode } from '../Tanuki';
 
 export default class BuildCommand implements yargs.CommandModule {
   command = 'build';
   describe = 'Builds the project artifacts.';
 
-  async handler(args: yargs.Arguments) {
-    return;
+  handler(args: yargs.Arguments) {
+    console.log(args);
+    return Tanuki.instance.build({
+      mode:
+        ['lib', 'library'].includes(args['mode'] as string) || ['lib', 'library'].includes(args['mo'] as string)
+          ? BuildMode.Library
+          : BuildMode.Application,
+
+      esm: args.e ? (args.esmodules ? true : false) : false,
+      minify: args.m ? (args.minify ? true : false) : false,
+      docs: args.docs ? (args.d ? true : false) : false,
+    });
   }
-
-  /*
-    logger.info('Building project artifacts...');
-
-    let mode = args.mode || args.mo || 'app';
-    if (mode === 'lib') mode = 'library';
-
-    logger.info(`Mode: ${mode}`);
-
-    if (args.develop || args.dev) {
-      logger.info('Invoking TypeScript compiler...');
-      try {
-        shell.exec('tsc');
-      } catch (ex) {
-        logger.error('Unable to build artifacts:');
-        logger.error(ex as Error);
-
-        process.exit(1);
-      }
-
-      logger.info('Built artifacts.');
-      process.exit(0);
-    }
-
-    if (mode === 'app') {
-      logger.info('Invoking TypeScript compiler...');
-      try {
-        shell.exec('tsc');
-      } catch (ex) {
-        logger.error('Unable to build artifacts:');
-        logger.error(ex as Error);
-
-        process.exit(1);
-      }
-
-      logger.info('Built artifacts.');
-      process.exit(0);
-    }
-
-    const cjs = args.cjs ? (args.commonjs ? true : false) : false;
-    const esm = args.esm ? (args.esmodules ? true : false) : false;
-    const minify = args.m ? (args.minify ? true : false) : false;
-    const docs = args.d ? (args.docs ? true : false) : false;
-
-    logger.info(`|> Emit CommonJS: ${cjs ? 'yes' : 'no'}`);
-    logger.info(`|> Emit ES Modules: ${esm ? 'yes' : 'no'}`);
-    logger.info(`|> Minified Output: ${minify ? 'yes' : 'no'}`);
-    logger.info(`|> Documentation: ${docs ? 'yes' : 'no'}`);
-  */
 
   builder(args: yargs.Argv) {
     return args
-      .option('cjs', {
-        alias: 'commonjs',
-        describe: 'If the artifact should be in CommonJS only.',
-        default: false,
-      })
-      .option('esm', {
+      .option('e', {
         alias: 'esmodules',
-        describe:
-          'If the artifact should be in ES Modules only. If both --esm and --cjs are combined, both artifacts will be built.',
+        describe: 'If the artifact should include a .mjs file.',
         default: false,
       })
       .option('m', {
@@ -105,7 +61,7 @@ export default class BuildCommand implements yargs.CommandModule {
         describe: 'If the build tool should emit Typedoc information, this is only in library mode.',
         default: false,
       })
-      .option('mo', {
+      .option('m', {
         alias: 'mode',
         describe:
           'Chooses which mode the build tool will use. Only values should be `app` or `library`, this will also check `package.json` under the `tanuki` object.',
@@ -115,12 +71,6 @@ export default class BuildCommand implements yargs.CommandModule {
           'library',
           'lib', // add lib for short
         ],
-      })
-      .option('develop', {
-        alias: 'dev',
-        describe:
-          "If we should only emit TypeScript using `tsc`, in library mode, it'll respect this while in `app` mode, it'll use tsc by default.",
-        default: false,
       });
   }
 }
