@@ -27,7 +27,6 @@
   "dependencies": {
     "@augu/utils": "1.5.3",
     "@aws-sdk/client-s3": "3.27.0",
-    "@ayanaware/logger": "2.2.1",
     "esbuild": "0.12.24",
     "inquirer": "8.1.2",
     "reflect-metadata": "0.1.13",
@@ -39,6 +38,8 @@
   "devDependencies": {
     "@augu/eslint-config": "2.2.0",
     "@augu/tsconfig": "1.1.1",
+    "@types/consola": "2.2.5",
+    "@types/eslint": "7.28.0",
     "@types/inquirer": "7.3.3",
     "@types/node": "16.7.1",
     "@types/rimraf": "3.0.2",

@@ -22,9 +22,6 @@
 
 import * as yargs from 'yargs';
 import { Tanuki } from '..';
-import Logger from '@ayanaware/logger';
-
-const logger = Logger.get('build:ci');
 
 export default class BuildCiCommand implements yargs.CommandModule {
   command = 'build:ci';
@@ -32,7 +29,6 @@ export default class BuildCiCommand implements yargs.CommandModule {
     'Builds the project in CI mode, which only runs `eslint` without the `--fix` flag and `tsc` with the `--noEmit` flag.';
 
   async handler(args: yargs.Arguments) {
-    logger.info('Building project in a CI environment...');
     await Tanuki.instance.buildCi();
   }
 }

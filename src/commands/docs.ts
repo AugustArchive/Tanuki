@@ -21,15 +21,12 @@
  */
 
 import * as yargs from 'yargs';
-import Logger from '@ayanaware/logger';
-
-const logger = Logger.get('build');
 
 export default class DocsCommand implements yargs.CommandModule {
   command = 'docs';
   describe = 'Emits documentation using `typedoc` and returns a `docs/<name>.json` file';
 
   async handler(args: yargs.Arguments) {
-    logger.info('Emitting documentation...');
+    return;
   }
 }

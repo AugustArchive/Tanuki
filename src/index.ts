@@ -22,8 +22,12 @@
 
 const { version: pkgVersion } = require('../package.json');
 
+import { Tanuki } from './Tanuki';
+
 /**
  * Returns the current version of `@augu/tanuki`.
  */
 export const version: string = pkgVersion;
-export { Tanuki } from './Tanuki';
+export { Tanuki };
+
+export default Tanuki.instance;

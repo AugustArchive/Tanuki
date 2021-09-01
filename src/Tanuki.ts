@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-import Logger from '@ayanaware/logger';
+import Shell from './internal/Shell';
 
 /**
  * Represents the current Tanuki instance running. You can grab
@@ -29,7 +29,6 @@ import Logger from '@ayanaware/logger';
  */
 export class Tanuki {
   private static _instance: Tanuki;
-  private logger: Logger = Logger.get(Tanuki);
 
   constructor() {
     if (!Tanuki._instance) Tanuki._instance = this;
@@ -47,19 +46,15 @@ export class Tanuki {
   }
 
   buildCi() {
-    return null;
+    this.lint('src', ['.ts', '.js', '.vue', '.tsx'], true);
   }
 
   docs() {
     return null;
   }
 
-  generateLicenses() {
-    return null;
-  }
-
-  lint() {
-    return null;
+  lint(path: string, include?: string[], fix = true) {
+    return Shell.exec(`eslint ${path} ${include ? `--ext ${include.join(',')} ` : ''}${fix ? '--fix ' : ''}`);
   }
 
   init() {
