@@ -28,7 +28,7 @@
     "@augu/utils": "1.5.3",
     "@aws-sdk/client-s3": "3.28.0",
     "@ayanaware/logger": "2.2.1",
-    "esbuild": "0.12.24",
+    "esbuild": "0.12.25",
     "inquirer": "8.1.2",
     "is-valid-identifier": "2.0.2",
     "ora": "5.4.1",
