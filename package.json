@@ -44,7 +44,7 @@
     "@augu/tsconfig": "1.1.1",
     "@types/consola": "2.2.5",
     "@types/eslint": "7.28.0",
-    "@types/inquirer": "7.3.3",
+    "@types/inquirer": "8.1.0",
     "@types/node": "16.7.1",
     "@types/progress": "2.0.5",
     "@types/rimraf": "3.0.2",
