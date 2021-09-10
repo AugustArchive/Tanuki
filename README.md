@@ -7,23 +7,20 @@
 > CLI:
 
 ```sh
-$ tanuki src/index.ts --out dist/index.js --esm --cjs --minify --sourcemap --docs
+$ tanuki build --mode ["app" / "mode"] [--esm "true" / "false"] [--minfy "true" / "false"]
 ```
 
 > Programmatic:
 
 ```js
-const { default: tanuki } = require('@augu/tanuki');
-const entryPoints = tanuki.extractEntryPoints();
-
-tanuki.build(entryPoints, {
-  out: 'dist/index.js',
-  esm: true,
-  cjs: true,
-  minify: true,
-  sourcemap: true,
-  docs: true,
+const { Tanuki, BuildMode } = require('@augu/tanuki');
+const tanuki = new Tanuki({
+  name: 'project name',
 });
+
+tanuki.build({ esm: true, minify: true, mode: BuildMode.Library });
+tanuki.docs();
+tanuki.lint(['src/**/*.ts']);
 ```
 
 ## Why?

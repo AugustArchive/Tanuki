@@ -1,0 +1,22 @@
+name: Upload documentation to S3
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'docs/docs.json'
+jobs:
+  upload-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Sync up docs/ on floof-docs bucket
+        uses: Noelware/s3-action@master
+        with:
+          object-format: 'tanuki/$(branch).json'
+          use-wasabi: 'true'
+          directories: './docs/*.json'
+          access-key: ${{ secrets.S3_ACCESS_KEY }}
+          secret-key: ${{ secrets.S3_SECRET_KEY }}
+          bucket: floof-docs
