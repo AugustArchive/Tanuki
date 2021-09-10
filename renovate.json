@@ -1,5 +1,5 @@
 {
   "automerge": true,
   "extends": ["config:base"],
-  "ignoreDeps": ["ora"]
+  "ignoreDeps": ["ora", "globby"]
 }
