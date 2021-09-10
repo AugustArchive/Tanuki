@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+import { BuildMode, Tanuki } from '..';
 import * as yargs from 'yargs';
 
 export default class BuildCommand implements yargs.CommandModule {
@@ -27,28 +28,30 @@ export default class BuildCommand implements yargs.CommandModule {
   describe = 'Builds the project artifacts.';
 
   handler(args: yargs.Arguments) {
-    // TODO: this
+    const mode = (args.mode ?? 'app') === BuildMode.Application ? BuildMode.Application : BuildMode.Library;
+    return Tanuki.instance.build({
+      mode,
+      esm: (args.esm as boolean | undefined) ?? false,
+      minify: (args.minify as boolean | undefined) ?? false,
+      provideDocs: (args.docs as boolean | undefined) ?? false,
+    });
   }
 
   builder(args: yargs.Argv) {
     return args
-      .option('e', {
-        alias: 'esmodules',
+      .option('esm', {
         describe: 'If the artifact should include a .mjs file.',
         default: false,
       })
-      .option('m', {
-        alias: 'minify',
+      .option('minify', {
         describe: 'If the built artifacts should be minified.',
         default: false,
       })
-      .option('d', {
-        alias: 'docs',
+      .option('docs', {
         describe: 'If the build tool should emit Typedoc information, this is only in library mode.',
         default: false,
       })
-      .option('m', {
-        alias: 'mode',
+      .option('mode', {
         describe:
           'Chooses which mode the build tool will use. Only values should be `app` or `library`, this will also check `package.json` under the `tanuki` object.',
         default: 'app',

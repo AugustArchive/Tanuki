@@ -41,20 +41,6 @@ export class Tanuki {
   }
 
   /**
-   * returns `'b'`.
-   */
-  get a() {
-    return 'b';
-  }
-
-  /**
-   * sets `uwu` = val
-   */
-  set a(val: string) {
-    this['uwu'] = val;
-  }
-
-  /**
    * Runs the documentation generator and parses the entries.
    */
   docs() {

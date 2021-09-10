@@ -189,11 +189,14 @@ export enum BuildMode {
 }
 
 /** @internal */
-export const loader: Loader = () => {
+export const loader: Loader = (path) => {
   try {
-    // todo: this
+    require('ts-node/register');
+    const config = require(path);
+
+    return config.default;
   } catch (ex) {
-    // todo: this
+    throw ex;
   }
 };
 

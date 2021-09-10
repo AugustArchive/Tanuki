@@ -27,7 +27,7 @@ export default class DocsCommand implements yargs.CommandModule {
   command = 'docs';
   describe = 'Emits documentation using `typedoc` and returns a `docs/docs.json` file';
 
-  async handler() {
-    await Documentation.instance.serialize();
+  handler() {
+    return Documentation.instance.serialize();
   }
 }

@@ -26,6 +26,7 @@ import yargs from 'yargs';
 import BuildCommand from './commands/build';
 import DocsCommand from './commands/docs';
 import { Tanuki } from './Tanuki';
+import LintCommand from './commands/lint';
 
 export default (config: Config) => {
   new Tanuki(config);
@@ -33,6 +34,7 @@ export default (config: Config) => {
     .usage('Usage: $0 <command> [options]')
     .command(new BuildCommand())
     .command(new DocsCommand())
+    .command(new LintCommand())
     .recommendCommands()
     .demandCommand(1)
     .strict()

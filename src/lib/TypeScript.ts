@@ -20,15 +20,16 @@
  * SOFTWARE.
  */
 
-import { mkdir, rm, writeFile, readFile } from 'fs/promises';
+import { mkdir, rm, writeFile, readFile, rmdir } from 'fs/promises';
 import { basename, dirname, join, sep } from 'path';
 import type { BuildArtifactsConfig } from './Config';
-import esbuild, { BuildOptions } from 'esbuild';
-import { colors, styles } from 'leeks.js';
 import { cjsToEsm, getTsConfig } from './utils';
+import { BuildOptions, build } from 'esbuild';
+import { colors, styles } from 'leeks.js';
 import { existsSync } from 'fs';
 import ProgressBar from 'progress';
 import { Tanuki } from '../Tanuki';
+import globby from 'globby';
 import consola from 'consola';
 import ora from 'ora';
 import ts from 'typescript';
@@ -148,7 +149,7 @@ export default class TypeScript {
       const path = file.split(sep);
       path.pop();
 
-      const actualPath = path.map((s) => (s !== 'src' ? s : 'dist')).join(sep);
+      const actualPath = path.map((s) => (s !== 'src' ? s : buildDir)).join(sep);
 
       if (!existsSync(actualPath)) await mkdir(actualPath);
       await writeFile(
@@ -193,10 +194,12 @@ export default class TypeScript {
       format: 'cjs',
       platform: 'node',
       target: 'node14',
+      tsconfig: Tanuki.instance.config.tsconfig ?? ts.findConfigFile(process.cwd(), ts.sys.fileExists),
+      treeShaking: true,
     };
 
     if (minify) options.minify = true;
-    await esbuild.build(options);
+    await build(options);
 
     if (esm) {
       const output = cjsToEsm(
@@ -207,6 +210,12 @@ export default class TypeScript {
 
       await writeFile(join(buildDir, `${Tanuki.instance.config.name}.mjs`), output + '\n');
       this.logger.info('Emitted ESModule file.');
+    }
+
+    // TODO: find a way to delete directories also
+    // maybe `fs.stat`?
+    for await (const path of globby.stream(`${buildDir}/**/*.js`)) {
+      await rm(path, { force: true, recursive: true });
     }
 
     this.logger.info('completed :3');

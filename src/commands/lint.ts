@@ -19,3 +19,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+import * as yargs from 'yargs';
+import { Tanuki } from '..';
+import consola from 'consola';
+
+export default class LintCommand implements yargs.CommandModule {
+  private readonly logger = consola.withScope('tanuki:lint');
+
+  command = 'lint';
+  describe = 'Runs ESLint in the current project.';
+
+  handler(args: any) {
+    if (!args.files) {
+      this.logger.warn('Missing an array of files.');
+      return;
+    }
+
+    console.log(args);
+    return Tanuki.instance.lint(args.f ?? args.files ?? ['.']);
+  }
+
+  builder(args: yargs.Argv) {
+    return args
+      .option('f', {
+        alias: 'files',
+        describe: 'Returns a list of files to lint.',
+        type: 'array',
+        default: [],
+      })
+      .describe({
+        files: 'Returns a list (globbing is supported) of files to lint.',
+      });
+  }
+}
