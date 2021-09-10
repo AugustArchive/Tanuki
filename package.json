@@ -3,7 +3,7 @@
   "description": "🐻 Personal build-tool framework for building libraries and applications for my TypeScript projects",
   "version": "1.0.0",
   "main": "build/tanuki.cjs",
-  "types": "index.d.ts",
+  "types": "build/index.d.ts",
   "license": "MIT",
   "author": "Noel 🐾 <cutie@floofy.dev>",
   "repository": "https://github.com/auguwu/Tanuki",
