@@ -28,7 +28,7 @@
     "consola": "2.15.3",
     "cosmiconfig": "7.0.1",
     "esbuild": "0.12.26",
-    "globby": "11.0.4",
+    "globby": "12.0.2",
     "is-valid-identifier": "2.0.2",
     "leeks.js": "0.2.2",
     "ora": "5.4.1",
