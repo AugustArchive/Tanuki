@@ -20,23 +20,21 @@
  * SOFTWARE.
  */
 
-import type { Config } from './lib';
-import yargs from 'yargs';
+import { DocSerializer } from './DocSerializer';
+import { parseType } from './util/parse';
 
-import BuildCommand from './commands/build';
-import DocsCommand from './commands/docs';
-import { Tanuki } from './Tanuki';
+export const VariableSerializer: DocSerializer = {
+  serialize(decl) {
+    return {
+      flags: {
+        const: decl.flags.isConst ?? false,
+        let: decl.flags.isLet ?? false,
+      },
 
-export default (config: Config) => {
-  new Tanuki(config);
-  yargs
-    .usage('Usage: $0 <command> [options]')
-    .command(new BuildCommand())
-    .command(new DocsCommand())
-    .recommendCommands()
-    .demandCommand(1)
-    .strict()
-    .alias('v', 'version')
-    .help('h')
-    .alias('h', 'help').argv;
+      type: {
+        type: decl.type!,
+        value: parseType(decl.type!),
+      },
+    };
+  },
 };

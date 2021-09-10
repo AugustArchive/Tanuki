@@ -20,23 +20,10 @@
  * SOFTWARE.
  */
 
-import type { Config } from './lib';
-import yargs from 'yargs';
+import { DocSerializer } from './DocSerializer';
 
-import BuildCommand from './commands/build';
-import DocsCommand from './commands/docs';
-import { Tanuki } from './Tanuki';
-
-export default (config: Config) => {
-  new Tanuki(config);
-  yargs
-    .usage('Usage: $0 <command> [options]')
-    .command(new BuildCommand())
-    .command(new DocsCommand())
-    .recommendCommands()
-    .demandCommand(1)
-    .strict()
-    .alias('v', 'version')
-    .help('h')
-    .alias('h', 'help').argv;
+export const SetterSerializer: DocSerializer = {
+  serialize(type) {
+    return {};
+  },
 };

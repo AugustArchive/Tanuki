@@ -21,27 +21,13 @@
  */
 
 import * as yargs from 'yargs';
-import esbuild from 'esbuild';
-import shell from '../internal/Shell';
-import { Tanuki } from '..';
-import { BuildMode } from '../Tanuki';
 
 export default class BuildCommand implements yargs.CommandModule {
   command = 'build';
   describe = 'Builds the project artifacts.';
 
   handler(args: yargs.Arguments) {
-    console.log(args);
-    return Tanuki.instance.build({
-      mode:
-        ['lib', 'library'].includes(args['mode'] as string) || ['lib', 'library'].includes(args['mo'] as string)
-          ? BuildMode.Library
-          : BuildMode.Application,
-
-      esm: args.e ? (args.esmodules ? true : false) : false,
-      minify: args.m ? (args.minify ? true : false) : false,
-      docs: args.docs ? (args.d ? true : false) : false,
-    });
+    // TODO: this
   }
 
   builder(args: yargs.Argv) {

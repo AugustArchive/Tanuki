@@ -20,15 +20,10 @@
  * SOFTWARE.
  */
 
-import * as yargs from 'yargs';
-import { Tanuki } from '..';
+import { DocSerializer } from './DocSerializer';
 
-export default class BuildCiCommand implements yargs.CommandModule {
-  command = 'build:ci';
-  describe =
-    'Builds the project in CI mode, which only runs `eslint` without the `--fix` flag and `tsc` with the `--noEmit` flag.';
-
-  async handler(args: yargs.Arguments) {
-    await Tanuki.instance.buildCi();
-  }
-}
+export const GetterSerializer: DocSerializer = {
+  serialize(type) {
+    return {};
+  },
+};

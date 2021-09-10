@@ -28,6 +28,10 @@ import { Tanuki } from './Tanuki';
  * Returns the current version of `@augu/tanuki`.
  */
 export const version: string = pkgVersion;
-export { Tanuki };
 
-export default Tanuki.instance;
+export { findConfig, BuildMode } from './lib/Config';
+export { Tanuki } from './Tanuki';
+
+export function uwu() {
+  return 'owo';
+}

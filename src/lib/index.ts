@@ -19,3 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+export { findConfig, Config } from './Config';
+export { default as ESLint } from './ESLint';
+export { default as TypeScript } from './TypeScript';
+export { default as Documentation } from './Documentation';

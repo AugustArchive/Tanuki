@@ -1,0 +1,111 @@
+{
+    "format_version": 1,
+    "children": [
+        {
+            "name": "BuildMode",
+            "kind": "Enumeration",
+            "comment": {
+                "shortText": "Returns the build mode for running the {@link Tanuki.build __build__} command."
+            }
+        },
+        {
+            "name": "Tanuki",
+            "kind": "Class",
+            "comment": {
+                "shortText": "Returns the entrypoint of Tanuki. This is where all commands are executed at."
+            },
+            "children": [
+                {
+                    "name": "constructor",
+                    "kind": "Constructor",
+                    "comment": {
+                        "shortText": "Creates a new instance of {@link Tanuki}."
+                    },
+                    "signatures": [
+                        {
+                            "type": {
+                                "type": "reference",
+                                "value": "Tanuki"
+                            },
+                            "as_string": "new Tanuki(config: Config)",
+                            "comment": {
+                                "shortText": "Creates a new instance of {@link Tanuki}."
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "config",
+                    "kind": "Property",
+                    "type": {
+                        "type": "reference",
+                        "value": "Config"
+                    },
+                    "flags": {
+                        "public": true,
+                        "static": false,
+                        "readonly": false
+                    }
+                },
+                {
+                    "name": "instance",
+                    "kind": "Property",
+                    "comment": {
+                        "shortText": "Returns the singleton of this {@link Tanuki} instance."
+                    },
+                    "type": {
+                        "type": "reference",
+                        "value": "Tanuki"
+                    },
+                    "flags": {
+                        "public": false,
+                        "static": true,
+                        "readonly": false
+                    }
+                },
+                {
+                    "name": "a",
+                    "kind": "Accessor",
+                    "comment": {
+                        "shortText": "returns `'b'`."
+                    }
+                },
+                {
+                    "name": "build",
+                    "kind": "Method"
+                },
+                {
+                    "name": "docs",
+                    "kind": "Method"
+                },
+                {
+                    "name": "lint",
+                    "kind": "Method"
+                }
+            ]
+        },
+        {
+            "name": "version",
+            "kind": "Variable",
+            "comment": {
+                "shortText": "Returns the current version of `@augu/tanuki`."
+            },
+            "flags": {
+                "const": true,
+                "let": false
+            },
+            "type": {
+                "type": {
+                    "type": "intrinsic",
+                    "name": "string"
+                },
+                "value": "string"
+            }
+        },
+        {
+            "name": "uwu",
+            "kind": "Function"
+        }
+    ],
+    "date": 1631289063535
+}

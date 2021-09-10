@@ -19,3 +19,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+import { DocSerializer } from './DocSerializer';
+
+export const EnumMemberSerializer: DocSerializer = {
+  serialize(type) {
+    return {};
+  },
+};

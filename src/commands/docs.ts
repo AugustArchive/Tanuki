@@ -20,13 +20,14 @@
  * SOFTWARE.
  */
 
+import { Documentation } from '../lib';
 import * as yargs from 'yargs';
 
 export default class DocsCommand implements yargs.CommandModule {
   command = 'docs';
-  describe = 'Emits documentation using `typedoc` and returns a `docs/<name>.json` file';
+  describe = 'Emits documentation using `typedoc` and returns a `docs/docs.json` file';
 
-  async handler(args: yargs.Arguments) {
-    return;
+  async handler() {
+    await Documentation.instance.serialize();
   }
 }

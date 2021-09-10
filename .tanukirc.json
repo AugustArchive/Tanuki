@@ -1,0 +1,7 @@
+{
+  "name": "tanuki",
+  "typedoc": {
+    "findTypedocFile": false,
+    "workspaces": false
+  }
+}

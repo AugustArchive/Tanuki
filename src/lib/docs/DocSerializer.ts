@@ -19,3 +19,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+import { JSONOutput } from 'typedoc';
+
+/**
+ * Represents a serializer interface to provide serialization
+ * between Typedoc and [docs.floofy.dev](https://github.com/Noelware/docs).
+ *
+ * @typeparam **T** The object that it's going to serialize
+ */
+export interface DocSerializer {
+  /**
+   * Serializes this {@link T object} and returns a JSON object about it.
+   * @param obj The object to serialize
+   * @return A JSON object blob
+   */
+  serialize(obj: JSONOutput.DeclarationReflection): Record<string, unknown>;
+}

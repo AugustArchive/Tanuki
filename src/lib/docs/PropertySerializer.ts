@@ -19,3 +19,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+import { DocSerializer } from './DocSerializer';
+import { parseType } from './util/parse';
+
+export const PropertySerializer: DocSerializer = {
+  serialize(declaration) {
+    return {
+      type: {
+        type: declaration.type!.type,
+        value: parseType(declaration.type!),
+      },
+
+      flags: {
+        public: declaration.flags.isPublic ?? false,
+        static: declaration.flags.isStatic ?? false,
+        readonly: declaration.flags.isReadonly ?? false,
+      },
+    };
+  },
+};
