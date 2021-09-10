@@ -6,7 +6,23 @@
             "kind": "Enumeration",
             "comment": {
                 "shortText": "Returns the build mode for running the {@link Tanuki.build __build__} command."
-            }
+            },
+            "members": [
+                {
+                    "name": "Application",
+                    "comment": {
+                        "shortText": "This is returned if the build artifacts should be in application mode. This means,\n`docs`, `cjs`, `esm`, and `minify` is disabled from being used *and* will use the TypeScript\ncompiler instead of **`esbuild`**."
+                    },
+                    "default": "\"app\""
+                },
+                {
+                    "name": "Library",
+                    "comment": {
+                        "shortText": "This is returned if the build artifacts should be in library mode. This means,\nit'll generate documentation for this version, `master`/`main`, and all branches."
+                    },
+                    "default": "\"library\""
+                }
+            ]
         },
         {
             "name": "Tanuki",
@@ -28,6 +44,21 @@
                                 "value": "Tanuki"
                             },
                             "as_string": "new Tanuki(config: Config)",
+                            "params": [
+                                {
+                                    "name": "config",
+                                    "type": {
+                                        "type": {
+                                            "type": "reference",
+                                            "name": "Config"
+                                        },
+                                        "value": "Config"
+                                    },
+                                    "comment": {
+                                        "shortText": "The configuration object to use.\n"
+                                    }
+                                }
+                            ],
                             "comment": {
                                 "shortText": "Creates a new instance of {@link Tanuki}."
                             }
@@ -68,19 +99,206 @@
                     "kind": "Accessor",
                     "comment": {
                         "shortText": "returns `'b'`."
-                    }
+                    },
+                    "getters": [
+                        {
+                            "type": {
+                                "type": {
+                                    "type": "intrinsic",
+                                    "name": "string"
+                                },
+                                "value": "string"
+                            },
+                            "comment": {
+                                "shortText": "returns `'b'`."
+                            }
+                        }
+                    ],
+                    "setters": [
+                        {
+                            "type": {
+                                "type": {
+                                    "type": "intrinsic",
+                                    "name": "void"
+                                },
+                                "value": "void"
+                            },
+                            "params": [
+                                {
+                                    "name": "val",
+                                    "type": {
+                                        "type": {
+                                            "type": "intrinsic",
+                                            "name": "string"
+                                        },
+                                        "value": "string"
+                                    }
+                                }
+                            ],
+                            "comment": {
+                                "shortText": "sets `uwu` = val"
+                            }
+                        }
+                    ]
                 },
                 {
                     "name": "build",
-                    "kind": "Method"
+                    "kind": "Method",
+                    "signatures": [
+                        {
+                            "type": {
+                                "type": {
+                                    "type": "reference",
+                                    "typeArguments": [
+                                        {
+                                            "type": "intrinsic",
+                                            "name": "void"
+                                        }
+                                    ],
+                                    "name": "Promise"
+                                },
+                                "value": "Promise<void>"
+                            },
+                            "as_string": "build(options: Partial<undefined | BuildArtifactsConfig>): Promise<void>",
+                            "params": [
+                                {
+                                    "name": "options",
+                                    "type": {
+                                        "type": {
+                                            "type": "reference",
+                                            "typeArguments": [
+                                                {
+                                                    "type": "union",
+                                                    "types": [
+                                                        {
+                                                            "type": "intrinsic",
+                                                            "name": "undefined"
+                                                        },
+                                                        {
+                                                            "type": "reference",
+                                                            "name": "BuildArtifactsConfig"
+                                                        }
+                                                    ]
+                                                }
+                                            ],
+                                            "name": "Partial"
+                                        },
+                                        "value": "Partial<undefined | BuildArtifactsConfig>"
+                                    }
+                                }
+                            ],
+                            "return_type": {
+                                "type": {
+                                    "type": "reference",
+                                    "typeArguments": [
+                                        {
+                                            "type": "intrinsic",
+                                            "name": "void"
+                                        }
+                                    ],
+                                    "name": "Promise"
+                                },
+                                "value": "Promise<void>"
+                            },
+                            "comment": {
+                                "shortText": "Runs the `build` command within the programmatic usage of Tanuki."
+                            }
+                        }
+                    ]
                 },
                 {
                     "name": "docs",
-                    "kind": "Method"
+                    "kind": "Method",
+                    "signatures": [
+                        {
+                            "type": {
+                                "type": {
+                                    "type": "reference",
+                                    "typeArguments": [
+                                        {
+                                            "type": "intrinsic",
+                                            "name": "void"
+                                        }
+                                    ],
+                                    "name": "Promise"
+                                },
+                                "value": "Promise<void>"
+                            },
+                            "as_string": "docs(): Promise<void>",
+                            "return_type": {
+                                "type": {
+                                    "type": "reference",
+                                    "typeArguments": [
+                                        {
+                                            "type": "intrinsic",
+                                            "name": "void"
+                                        }
+                                    ],
+                                    "name": "Promise"
+                                },
+                                "value": "Promise<void>"
+                            },
+                            "comment": {
+                                "shortText": "Runs the documentation generator and parses the entries."
+                            }
+                        }
+                    ]
                 },
                 {
                     "name": "lint",
-                    "kind": "Method"
+                    "kind": "Method",
+                    "signatures": [
+                        {
+                            "type": {
+                                "type": {
+                                    "type": "reference",
+                                    "typeArguments": [
+                                        {
+                                            "type": "intrinsic",
+                                            "name": "void"
+                                        }
+                                    ],
+                                    "name": "Promise"
+                                },
+                                "value": "Promise<void>"
+                            },
+                            "as_string": "lint(files: string[]): Promise<void>",
+                            "params": [
+                                {
+                                    "name": "files",
+                                    "type": {
+                                        "type": {
+                                            "type": "array",
+                                            "elementType": {
+                                                "type": "intrinsic",
+                                                "name": "string"
+                                            }
+                                        },
+                                        "value": "string[]"
+                                    },
+                                    "comment": {
+                                        "text": "The list of files to lint for\n"
+                                    }
+                                }
+                            ],
+                            "return_type": {
+                                "type": {
+                                    "type": "reference",
+                                    "typeArguments": [
+                                        {
+                                            "type": "intrinsic",
+                                            "name": "void"
+                                        }
+                                    ],
+                                    "name": "Promise"
+                                },
+                                "value": "Promise<void>"
+                            },
+                            "comment": {
+                                "shortText": "Runs `eslint` to lint files."
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -101,11 +319,7 @@
                 },
                 "value": "string"
             }
-        },
-        {
-            "name": "uwu",
-            "kind": "Function"
         }
     ],
-    "date": 1631289063535
+    "date": 1631291201046
 }

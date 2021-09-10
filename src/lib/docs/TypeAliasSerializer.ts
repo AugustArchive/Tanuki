@@ -20,10 +20,23 @@
  * SOFTWARE.
  */
 
+/* eslint-disable camelcase */
+
 import { DocSerializer } from './DocSerializer';
+import { parseType } from './util/parse';
 
 export const TypeAliasSerializer: DocSerializer = {
-  serialize(type) {
-    return {};
+  serialize(decl) {
+    return {
+      type_params: decl.typeParameter?.map((s) => ({ name: s.name })),
+      type: {
+        type: decl.type!,
+        value: parseType(decl.type!),
+      },
+
+      as_string: `type ${decl.name}${
+        decl.typeParameter !== undefined ? `<${decl.typeParameter.map((s) => s.name).join(', ')}>` : ''
+      } = ${parseType(decl.type!)}`,
+    };
   },
 };

@@ -20,10 +20,59 @@
  * SOFTWARE.
  */
 
+/* eslint-disable camelcase */
+
 import { DocSerializer } from './DocSerializer';
+import { parseType } from './util/parse';
 
 export const FunctionSerializer: DocSerializer = {
-  serialize(type) {
-    return {};
+  serialize(decl) {
+    const result: Record<string, any> = {
+      signatures: [],
+    };
+
+    if (decl.comment !== undefined) result.comment = decl.comment;
+    if (decl.signatures && decl.signatures.length > 0) {
+      for (const signature of decl.signatures) {
+        const res: Record<string, any> = {
+          type: {
+            type: signature.type,
+            value: parseType(signature.type!),
+          },
+
+          as_string: `${signature.name}${
+            signature.parameters !== undefined
+              ? `(${signature.parameters.map((param) => `${param.name}: ${parseType(param.type!)}`).join(', ')})`
+              : '()'
+          }`,
+
+          params: signature.parameters?.map((param) => {
+            const h: Record<string, any> = {
+              name: param.name,
+              type: {
+                type: param.type,
+                value: parseType(param.type!),
+              },
+
+              default_value: param.defaultValue,
+            };
+
+            if (param.comment !== undefined) h.comment = param.comment;
+            return h;
+          }),
+
+          return_type: {
+            type: signature.type,
+            value: parseType(signature.type!),
+          },
+        };
+
+        if (signature.comment !== undefined) res.comment = signature.comment;
+
+        result.signatures.push(res);
+      }
+    }
+
+    return result;
   },
 };

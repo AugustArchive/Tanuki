@@ -24,15 +24,14 @@
 
 import {
   EnumSerializer,
-  EnumMemberSerializer,
   FunctionSerializer,
   VariableSerializer,
   TypeAliasSerializer,
-  InterfaceSerializer,
   GetterSerializer,
   SetterSerializer,
   ConstructorSerializer,
   PropertySerializer,
+  MethodSerializer,
 } from './docs';
 
 import { Application, JSONOutput, ReflectionKind, TypeDocOptions, TypeDocReader } from 'typedoc';
@@ -176,6 +175,69 @@ export default class Documentation {
             ...block,
             ...result,
           };
+        }
+        break;
+
+      case ReflectionKind.Enum:
+        {
+          const result = EnumSerializer.serialize(child);
+          block = {
+            ...block,
+            ...result,
+          };
+        }
+        break;
+
+      case ReflectionKind.Function:
+        {
+          const result = FunctionSerializer.serialize(child);
+          block = {
+            ...block,
+            ...result,
+          };
+        }
+        break;
+
+      case ReflectionKind.Method:
+        {
+          const result = MethodSerializer.serialize(child);
+          block = {
+            ...block,
+            ...result,
+          };
+        }
+        break;
+
+      case ReflectionKind.Accessor:
+        {
+          if (child.getSignature !== undefined) {
+            const result = GetterSerializer.serialize(child.getSignature as any);
+            block.getters = result;
+          }
+
+          if (child.setSignature !== undefined) {
+            const result = SetterSerializer.serialize(child.setSignature as any);
+            block.setters = result;
+          }
+        }
+        break;
+
+      case ReflectionKind.TypeAlias:
+        {
+          const result = TypeAliasSerializer.serialize(child);
+          block = {
+            ...block,
+            ...result,
+          };
+        }
+        break;
+
+      case ReflectionKind.Interface:
+        {
+          if (!child.children) break;
+
+          block.children = [];
+          for (const ch of child.children) block.children.push(this._traverseChild(ch));
         }
         break;
 

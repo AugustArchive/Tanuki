@@ -50,6 +50,21 @@ export const ConstructorSerializer: DocSerializer = {
             ? `(${signature.parameters.map((param) => `${param.name}: ${parseType(param.type!)}`).join(', ')})`
             : '()'
         }`,
+
+        params: signature.parameters?.map((param) => {
+          const h: Record<string, any> = {
+            name: param.name,
+            type: {
+              type: param.type,
+              value: parseType(param.type!),
+            },
+
+            default_value: param.defaultValue,
+          };
+
+          if (param.comment !== undefined) h.comment = param.comment;
+          return h;
+        }),
       };
 
       if (signature.comment !== undefined) sign.comment = signature.comment;

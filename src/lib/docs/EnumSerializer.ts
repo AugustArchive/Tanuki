@@ -20,10 +20,23 @@
  * SOFTWARE.
  */
 
+import { EnumMemberSerializer } from './EnumMemberSerializer';
 import { DocSerializer } from './DocSerializer';
 
 export const EnumSerializer: DocSerializer = {
-  serialize(type) {
-    return {};
+  serialize(decl) {
+    const result: Record<string, any> = {
+      members: [],
+    };
+
+    if (decl.comment !== undefined) result.comment = decl.comment;
+    if (decl.children && decl.children.length > 0) {
+      for (const child of decl.children) {
+        const res = EnumMemberSerializer.serialize(child);
+        result.members.push(res);
+      }
+    }
+
+    return result;
   },
 };

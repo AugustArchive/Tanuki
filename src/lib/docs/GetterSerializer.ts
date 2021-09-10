@@ -20,10 +20,24 @@
  * SOFTWARE.
  */
 
-import { DocSerializer } from './DocSerializer';
+import { DocAccessorSerializer } from './DocSerializer';
+import { parseType } from './util/parse';
 
-export const GetterSerializer: DocSerializer = {
-  serialize(type) {
-    return {};
+export const GetterSerializer: DocAccessorSerializer = {
+  serialize(decls) {
+    const result = [];
+    for (const getter of decls) {
+      const res: Record<string, any> = {
+        type: {
+          type: getter.type,
+          value: parseType(getter.type!),
+        },
+      };
+
+      if (getter.comment !== undefined) res.comment = getter.comment;
+      result.push(res as never);
+    }
+
+    return result;
   },
 };

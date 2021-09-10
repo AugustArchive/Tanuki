@@ -36,3 +36,15 @@ export interface DocSerializer {
    */
   serialize(obj: JSONOutput.DeclarationReflection): Record<string, unknown>;
 }
+
+/**
+ * Represents a serializer that serializes accessors.
+ */
+export interface DocAccessorSerializer {
+  /**
+   * Serializes this {@link JSONOutput.SignatureReflection object} and returns a JSON object about it.
+   * @param obj The array to serialize
+   * @return A JSON array blob
+   */
+  serialize(obj: JSONOutput.SignatureReflection[]): any[];
+}

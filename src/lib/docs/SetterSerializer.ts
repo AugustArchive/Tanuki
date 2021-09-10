@@ -20,10 +20,41 @@
  * SOFTWARE.
  */
 
-import { DocSerializer } from './DocSerializer';
+/* eslint-disable camelcase */
 
-export const SetterSerializer: DocSerializer = {
-  serialize(type) {
-    return {};
+import { DocAccessorSerializer } from './DocSerializer';
+import { parseType } from './util/parse';
+
+export const SetterSerializer: DocAccessorSerializer = {
+  serialize(decls) {
+    const result = [];
+    for (const setter of decls) {
+      const res: Record<string, any> = {
+        type: {
+          type: setter.type,
+          value: parseType(setter.type!),
+        },
+
+        params: setter.parameters?.map((param) => {
+          const h: Record<string, any> = {
+            name: param.name,
+            type: {
+              type: param.type,
+              value: parseType(param.type!),
+            },
+
+            default_value: param.defaultValue,
+          };
+
+          if (param.comment !== undefined) h.comment = param.comment;
+          return h;
+        }),
+      };
+
+      if (setter.comment !== undefined) res.comment = setter.comment;
+      result.push(res as never);
+    }
+
+    return result;
   },
 };

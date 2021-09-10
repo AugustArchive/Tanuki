@@ -21,12 +21,11 @@
  */
 
 export { ConstructorSerializer } from './ConstructorSerializer';
-export { EnumMemberSerializer } from './EnumMemberSerializer';
 export { PropertySerializer } from './PropertySerializer';
 export { TypeAliasSerializer } from './TypeAliasSerializer';
-export { InterfaceSerializer } from './InterfaceSerializer';
 export { VariableSerializer } from './VariableSerializer';
 export { FunctionSerializer } from './FunctionSerializer';
+export { MethodSerializer } from './MethodSerializer';
 export { GetterSerializer } from './GetterSerializer';
 export { SetterSerializer } from './SetterSerializer';
 export { EnumSerializer } from './EnumSerializer';

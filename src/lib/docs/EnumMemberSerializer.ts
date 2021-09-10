@@ -23,7 +23,14 @@
 import { DocSerializer } from './DocSerializer';
 
 export const EnumMemberSerializer: DocSerializer = {
-  serialize(type) {
-    return {};
+  serialize(decl) {
+    const result: Record<string, any> = {
+      name: decl.name,
+    };
+
+    if (decl.comment !== undefined) result.comment = decl.comment;
+    if (decl.defaultValue !== undefined) result.default = decl.defaultValue;
+
+    return result;
   },
 };
