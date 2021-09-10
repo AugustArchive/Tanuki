@@ -195,7 +195,6 @@ export default class TypeScript {
       platform: 'node',
       target: 'node14',
       tsconfig: Tanuki.instance.config.tsconfig ?? ts.findConfigFile(process.cwd(), ts.sys.fileExists),
-      treeShaking: true,
     };
 
     if (minify) options.minify = true;
@@ -210,12 +209,6 @@ export default class TypeScript {
 
       await writeFile(join(buildDir, `${Tanuki.instance.config.name}.mjs`), output + '\n');
       this.logger.info('Emitted ESModule file.');
-    }
-
-    // TODO: find a way to delete directories also
-    // maybe `fs.stat`?
-    for await (const path of globby.stream(`${buildDir}/**/*.js`)) {
-      await rm(path, { force: true, recursive: true });
     }
 
     this.logger.info('completed :3');

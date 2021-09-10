@@ -95,53 +95,6 @@
                     }
                 },
                 {
-                    "name": "a",
-                    "kind": "Accessor",
-                    "comment": {
-                        "shortText": "returns `'b'`."
-                    },
-                    "getters": [
-                        {
-                            "type": {
-                                "type": {
-                                    "type": "intrinsic",
-                                    "name": "string"
-                                },
-                                "value": "string"
-                            },
-                            "comment": {
-                                "shortText": "returns `'b'`."
-                            }
-                        }
-                    ],
-                    "setters": [
-                        {
-                            "type": {
-                                "type": {
-                                    "type": "intrinsic",
-                                    "name": "void"
-                                },
-                                "value": "void"
-                            },
-                            "params": [
-                                {
-                                    "name": "val",
-                                    "type": {
-                                        "type": {
-                                            "type": "intrinsic",
-                                            "name": "string"
-                                        },
-                                        "value": "string"
-                                    }
-                                }
-                            ],
-                            "comment": {
-                                "shortText": "sets `uwu` = val"
-                            }
-                        }
-                    ]
-                },
-                {
                     "name": "build",
                     "kind": "Method",
                     "signatures": [
@@ -321,5 +274,5 @@
             }
         }
     ],
-    "date": 1631291201046
+    "date": 1631301316936
 }
