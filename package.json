@@ -35,7 +35,7 @@
     "progress": "2.0.3",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
-    "typedoc": "0.21.9",
+    "typedoc": "0.22.2",
     "yargs": "17.1.1"
   },
   "devDependencies": {
