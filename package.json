@@ -1,7 +1,7 @@
 {
   "name": "@augu/tanuki",
   "description": "🐻 Personal build-tool framework for building libraries and applications for my TypeScript projects",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "build/tanuki.cjs",
   "types": "index.d.ts",
   "license": "MIT",
