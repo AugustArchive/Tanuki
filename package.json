@@ -1,7 +1,7 @@
 {
   "name": "@augu/tanuki",
   "description": "🐻 Personal build-tool framework for building libraries and applications for my TypeScript projects",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "build/tanuki.cjs",
   "types": "index.d.ts",
   "license": "MIT",
@@ -19,7 +19,7 @@
   "scripts": {
     "build:ci": "eslint src --ext .ts && tsc --noEmit",
     "format": "prettier --config ./.prettierrc.json --write src/**/*.ts",
-    "build": "yarn lint && yarn format && rimraf build && tanuki build --mode lib",
+    "build": "yarn lint && yarn format && rimraf build && tanuki build --mode lib --minify true",
     "lint": "tanuki lint",
     "docs": "tanuki docs"
   },
