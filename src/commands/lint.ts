@@ -22,21 +22,12 @@
 
 import * as yargs from 'yargs';
 import { Tanuki } from '..';
-import consola from 'consola';
 
 export default class LintCommand implements yargs.CommandModule {
-  private readonly logger = consola.withScope('tanuki:lint');
-
   command = 'lint';
   describe = 'Runs ESLint in the current project.';
 
   handler(args: any) {
-    if (!args.files) {
-      this.logger.warn('Missing an array of files.');
-      return;
-    }
-
-    console.log(args);
     return Tanuki.instance.lint(args.f ?? args.files ?? ['.']);
   }
 

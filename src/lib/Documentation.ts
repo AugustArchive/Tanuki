@@ -81,11 +81,6 @@ export default class Documentation {
       pretty: true,
     };
 
-    if (Array.isArray(config.workspaces)) {
-      defaultOptions.packages = config.workspaces;
-      delete defaultOptions.entryPoints; // entry points won't work if workspaces is enabled
-    }
-
     // add defaults
     app.bootstrap(defaultOptions);
 

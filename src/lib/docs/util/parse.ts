@@ -67,7 +67,7 @@ export const parseType = (type: JSONOutput.SomeType) => {
       .filter((s) => Boolean(s) && s.trim().length > 0)
       .join(' | ');
 
-  if (is.inferred(type) || is.intrinsic(type) || is.typeParam(type) || is.unknown(type)) return type.name;
+  if (is.inferred(type) || is.intrinsic(type) || is.unknown(type)) return type.name;
 
   return 'unknown';
 };

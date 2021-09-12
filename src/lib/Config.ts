@@ -87,15 +87,6 @@ export interface BuildArtifactsConfig {
   esm?: boolean;
 
   /**
-   * If the `build` / `build:ci` commands should output a `.cjs` file. If {@link BuildArtifactsConfig.esm} and
-   * {@link BuildArtifactsConfig.cjs} are disabled or not defined, it'll only invoke `tsc` and not use `esbuild`.
-   *
-   * This is disabled in **application** mode.
-   * @default false
-   */
-  cjs?: boolean;
-
-  /**
    * If the `build` / `build:ci` commands should be minified.
    *
    * This is disabled in **application** mode.
@@ -116,41 +107,9 @@ export interface BuildArtifactsConfig {
   uploader?: 's3' | 'fs';
 
   /**
-   * Returns the configuration for S3. To upload objects, you must
-   * set the `TANUKI_S3_ACCESS_KEY` and `TANUKI_S3_SECRET_KEY` environment
-   * variables.
-   *
-   * @default null
-   */
-  s3?: S3Config;
-
-  /**
    * Returns the build mode to use.
    */
   mode?: BuildMode;
-}
-
-/**
- * The configuration for S3 uploading.
- */
-export interface S3Config {
-  /**
-   * The provider to use.
-   * @default 'amazon'
-   */
-  provider?: 'wasabi' | 'amazon';
-
-  /**
-   * The bucket to use to upload the docs.json file to
-   * @default '<project name>'
-   */
-  bucket?: string;
-
-  /**
-   * The region to use to upload the docs.json file to
-   * @default 'us-east1'
-   */
-  region?: string;
 }
 
 /**
@@ -211,6 +170,6 @@ export const findConfig = async () => {
 
   const res = await config.search();
 
-  if (res === null) throw new TypeError();
-  return res.config;
+  if (res === null) return { name: 'unknown' } as Config;
+  return res.config as Config;
 };

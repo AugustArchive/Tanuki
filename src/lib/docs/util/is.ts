@@ -34,9 +34,6 @@ export namespace is {
   export const typeOperator = (value: unknown): value is JSONOutput.TypeOperatorType =>
     createIsType(value, 'typeOperator');
 
-  export const typeParam = (value: unknown): value is JSONOutput.TypeParameterType =>
-    createIsType(value, 'typeParameter');
-
   export const union = (value: unknown): value is JSONOutput.UnionType => createIsType(value, 'union');
   export const unknown = (value: unknown): value is JSONOutput.UnknownType => createIsType(value, 'unknown');
 }

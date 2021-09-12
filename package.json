@@ -3,7 +3,7 @@
   "description": "🐻 Personal build-tool framework for building libraries and applications for my TypeScript projects",
   "version": "1.0.0",
   "main": "build/tanuki.cjs",
-  "types": "build/index.d.ts",
+  "types": "index.d.ts",
   "license": "MIT",
   "author": "Noel 🐾 <cutie@floofy.dev>",
   "repository": "https://github.com/auguwu/Tanuki",
@@ -19,9 +19,9 @@
   "scripts": {
     "build:ci": "eslint src --ext .ts && tsc --noEmit",
     "format": "prettier --config ./.prettierrc.json --write src/**/*.ts",
-    "build": "yarn lint && yarn format && rimraf build && tsc && ./bin/tanuki build --mode lib",
-    "lint": "./bin/tanuki lint",
-    "docs": "./bin/tanuki docs"
+    "build": "yarn lint && yarn format && rimraf build && tanuki build --mode lib",
+    "lint": "tanuki lint",
+    "docs": "tanuki docs"
   },
   "dependencies": {
     "@augu/utils": "1.5.3",
@@ -36,16 +36,15 @@
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "ts-node": "10.2.1",
+    "typedoc": "0.22.3",
     "typescript": "4.4.2",
-    "typedoc": "0.21.9",
     "yargs": "17.1.1"
   },
   "devDependencies": {
     "@augu/eslint-config": "2.2.0",
+    "@augu/tanuki": "1.0.0",
     "@augu/tsconfig": "1.1.1",
-    "@types/consola": "2.2.5",
     "@types/eslint": "7.28.0",
-    "@types/inquirer": "8.1.1",
     "@types/node": "16.7.1",
     "@types/progress": "2.0.5",
     "@types/rimraf": "3.0.2",

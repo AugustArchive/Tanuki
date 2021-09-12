@@ -28,7 +28,6 @@ export const VariableSerializer: DocSerializer = {
     return {
       flags: {
         const: decl.flags.isConst ?? false,
-        let: decl.flags.isLet ?? false,
       },
 
       type: {
