@@ -1,6 +1,8 @@
 # @augu/tanuki
 
 > 🐻 **Personal build-tool framework for building libraries and applications for my TypeScript projects**
+>
+> Deprecated because didn't work out. :(
 
 ## Usage
 

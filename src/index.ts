@@ -22,10 +22,21 @@
 
 const { version: pkgVersion } = require('../package.json');
 
+import { findConfig } from './lib/Config';
+
 /**
  * Returns the current version of `@augu/tanuki`.
  */
 export const version: string = pkgVersion;
 
-export { findConfig, BuildMode } from './lib/Config';
+export { BuildMode } from './lib/Config';
 export { Tanuki } from './Tanuki';
+export { findConfig };
+
+/**
+ * Runs the CLI of Tanuki
+ */
+export async function runCLI() {
+  const config = await findConfig();
+  return require('./cli').default(config);
+}

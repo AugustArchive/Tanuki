@@ -195,6 +195,11 @@ declare namespace tanuki {
    * Finds the configuration file and returns the config.
    */
   export function findConfig(): Promise<Config>;
+
+  /**
+   * Runs the `tanuki` command-line utility.
+   */
+  export function runCLI(): Promise<void>;
 }
 
 export = tanuki;

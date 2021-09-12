@@ -22,16 +22,14 @@
  * SOFTWARE.
  */
 
-const { findConfig } = require('../build/lib');
+const { runCLI } = require('../build/tanuki.cjs');
 const consola = require('consola');
 
-const main = async() => {
-  const config = await findConfig();
-  require('../build/cli').default(config);
-};
+const main = () => runCLI();
 
 main().catch(ex => {
   const log = consola.withScope('tanuki:cli');
+
   log.fatal(ex);
   process.exit(1);
 });
